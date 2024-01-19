@@ -7,6 +7,7 @@ using UnityEditor;
 namespace StaticMeshes
 {
     [CreateAssetMenu]
+    [BurstCompile]
     public class SphericalGridData : ScriptableObject
     {
         private static readonly int _a = 10;

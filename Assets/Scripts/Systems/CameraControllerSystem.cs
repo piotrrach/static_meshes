@@ -10,7 +10,7 @@ namespace StaticMeshes
     {
         protected override void OnCreate()
         {
-            RequireForUpdate<SpawnProperties>();
+            //RequireForUpdate<SpawnProperties>();
         }
 
         protected override void OnUpdate()

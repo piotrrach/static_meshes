@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   Material: {fileID: 2100000, guid: bb1d861403d09b24c88f68cfd1cc8765, type: 2}
-  SphereRadius: 9.89
-  ObjectsCount: 5566
+  SphereRadius: 11.2
+  ObjectsCount: 621
   SphericalGridData: {fileID: 11400000, guid: fa00c841510765743a7da4508215a89f, type: 2}
