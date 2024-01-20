@@ -6,12 +6,6 @@ Instancje mają być równomiernie rozłożone wewnątrz kuli. Mesh, materiały,
 parametry kuli są ustalane w edytorze. Symulacja jest statyczna - instancje nie poruszają się. Instancje
 są renderowane zarówno w Edit jak i w Play mode.
 
-Dodatkowy opis:
-● a) Opisz ograniczenia i wymagania Twojego rozwiązania.
-● b) Co by się zmieniło, gdyby instancje mogły się poruszać (symulacja ruchu realizowana przez inny system)?
-● c) Jak można ulepszyć Twoje rozwiązanie?
-● d) Jak inaczej można rozwiązać problem (krótki opis z zaletami i wadami)?
-
 ## Organiczenia i wymagania rozwiązania:
 Odp:
 1. Predefiniowana maksymalna liczba obiektów. Jakkolwiek łatwo można ją rozszerzyć, ograniczenie pozostaje.
