@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using StaticMeshes;
 
 namespace StaticMeshes.Editor
 {

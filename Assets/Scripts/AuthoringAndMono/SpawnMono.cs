@@ -1,31 +1,44 @@
-using StaticMeshes;
-using System;
+using System.Collections;
 using Unity.Entities;
 using UnityEngine;
 
 namespace StaticMeshes
 {
+    [ExecuteAlways]
     public class SpawnMono : MonoBehaviour
     {
-        public GameObject SpawnablePrefab;
-        public SpawnerSettings SpawnerSettings;
-    }
+        [SerializeField]
+        private SpawnerSettings _spawnerSettings;
 
-    public class SpawnBaker : Baker<SpawnMono>
-    {
-        public override void Bake(SpawnMono authoring)
+        private World World => World.DefaultGameObjectInjectionWorld;
+        private SpawnSystem SpawnSystem => World.GetOrCreateSystemManaged<SpawnSystem>();
+
+        private void OnEnable()
         {
-            //var entity = GetEntity(TransformUsageFlags.Renderable);
-            //AddComponent(entity, new SpawnProperties()
-            //{
-            //    SpawnablePrefab = GetEntity(authoring.SpawnablePrefab, TransformUsageFlags.Dynamic),
-            //    Quantity = authoring.SpawnerSettings.ObjectsCount,
-            //    Radius = authoring.SpawnerSettings.SphereRadius,
-            //});
-            //AddComponent(entity, new SpawnRandom
-            //{
-            //    Value = Unity.Mathematics.Random.CreateFromIndex(authoring.SpawnerSettings.Seed)
-            //});
+            StartCoroutine(WaitUntillWorldIsCreatedAndInitializeSpawning());
+        }
+
+        // Delay spawn system update until World is created.
+        // Trying to acces it in on Enable sometimes couses problems as there is no clear rule
+        // whether OnEnable or World Creation happens sooner.
+        private IEnumerator WaitUntillWorldIsCreatedAndInitializeSpawning()
+        {
+            if (World == null)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            OnSettingsChanged();
+            _spawnerSettings.OnAnyValueChanged += OnSettingsChanged;
+        }
+
+        private void OnDisable()
+        {
+            _spawnerSettings.OnAnyValueChanged -= OnSettingsChanged;
+        }
+
+        private void OnSettingsChanged()
+        {
+            SpawnSystem.UpdateSettingsAndView(_spawnerSettings);
         }
     }
 }

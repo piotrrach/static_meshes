@@ -2,20 +2,24 @@ using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
 using System.Linq;
-using UnityEditor;
 
 namespace StaticMeshes
 {
+    /// <summary>
+    /// Represents a collection of points that were evenly distributed within the sphere;
+    /// Points are sorted by distance to center of the sphere.
+    /// </summary>
     [CreateAssetMenu]
     [BurstCompile]
     public class SphericalGridData : ScriptableObject
     {
-        private static readonly int _a = 10;
+        //a stands for radius or half of the side lenght of cube that was "sphericaled" or "inflated"
+        private static readonly int _a = 20;
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private float3[] _grid;
-
         public float3[] Grid => _grid;
+        public int Length => _grid.Length;
 
         [BurstCompile]
         public void BakeData()
@@ -38,13 +42,8 @@ namespace StaticMeshes
         }
 
         [BurstCompile]
-        private float3 GetInSpherePosition(int halfLength, int xIndex, int yIndex, int zIndex)
+        private float3 GetInSpherePosition(int a, int x, int y, int z)
         {
-            int a = halfLength;
-            int x = xIndex;
-            int y = yIndex;
-            int z = zIndex;
-
             float3 result = new float3
             {
                 x = x * a * (math.sqrt((a * a) - (y * y) / (2) - (z * z) / (2) + (y * y * z * z) / (3 * a * a))),

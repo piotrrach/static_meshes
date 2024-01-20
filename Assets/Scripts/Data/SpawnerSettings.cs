@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnerSettings : ScriptableObject
 {
+    public bool AnimateObjects;
     public Mesh Mesh;
     public Material Material;
     public float SphereRadius = 20f;
@@ -15,10 +16,5 @@ public class SpawnerSettings : ScriptableObject
     public void OnValidate()
     {
         OnAnyValueChanged?.Invoke();
-
-        if(SpawnSystem.Instance != null)
-        {
-            SpawnSystem.Instance.UpdateSettings(this);
-        }
     }
 }
