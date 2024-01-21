@@ -13,6 +13,7 @@ Odp:
 
 ## Co by się zmieniło, gdyby instancje mogły się poruszać (symulacja ruchu realizowana przez inny system)?
 Odp: 
+
   Niewiele. W tradycyjnym sposobie tworzenia tak dużej ilość obiektów różnica między obiektami statycznymi a dynamicznymi jest znaczna. 
 Statyczne obiekty współdzielące ten sam materiał są renderowane przy pomocy jednego draw call'a. (Static Batching)
 Przy dynamicznych obiektach (tj ruszających się), w zależności od docelowej platformy należałoby użyć lub nie Dynamic Batching-u, 
